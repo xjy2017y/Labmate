@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.UserEntityMapper">
+  <resultMap id="BaseResultMap" type="com.entity.UserEntity">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="wechat" jdbcType="VARCHAR" property="wechat" />
+    <result column="stu_str" jdbcType="VARCHAR" property="stuStr" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="lab_pos" jdbcType="VARCHAR" property="labPos" />
+    <result column="person_identity" jdbcType="VARCHAR" property="personIdentity" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, wechat, stu_str, phone, lab_pos, person_identity, user_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectSelective" parameterType="com.entity.UserEntity" resultMap="BaseResultMap">
+    select * from user
+    where
+    <if test="id != null">
+      id = #{id},
+    </if>
+    <if test="wechat != null">
+      wechat = #{wechat},
+    </if>
+    <if test="stuStr != null">
+      stu_str = #{stuStr},
+    </if>
+    <if test="phone != null">
+      phone = #{phone},
+    </if>
+    <if test="labPos != null">
+      lab_pos = #{labPos},
+    </if>
+    <if test="personIdentity != null">
+      person_identity = #{personIdentity},
+    </if>
+    <if test="userName != null">
+      user_name = #{userName}
+    </if>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.entity.UserEntity">
+    insert into user (id, wechat, stu_str, 
+      phone, lab_pos, person_identity, 
+      user_name)
+    values (#{id,jdbcType=INTEGER}, #{wechat,jdbcType=VARCHAR}, #{stuStr,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{labPos,jdbcType=VARCHAR}, #{personIdentity,jdbcType=VARCHAR}, 
+      #{userName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.entity.UserEntity">
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="wechat != null">
+        wechat,
+      </if>
+      <if test="stuStr != null">
+        stu_str,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="labPos != null">
+        lab_pos,
+      </if>
+      <if test="personIdentity != null">
+        person_identity,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="wechat != null">
+        #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="stuStr != null">
+        #{stuStr,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="labPos != null">
+        #{labPos,jdbcType=VARCHAR},
+      </if>
+      <if test="personIdentity != null">
+        #{personIdentity,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.entity.UserEntity">
+    update user
+    <set>
+      <if test="wechat != null">
+        wechat = #{wechat,jdbcType=VARCHAR},
+      </if>
+      <if test="stuStr != null">
+        stu_str = #{stuStr,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="labPos != null">
+        lab_pos = #{labPos,jdbcType=VARCHAR},
+      </if>
+      <if test="personIdentity != null">
+        person_identity = #{personIdentity,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.entity.UserEntity">
+    update user
+    set wechat = #{wechat,jdbcType=VARCHAR},
+      stu_str = #{stuStr,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      lab_pos = #{labPos,jdbcType=VARCHAR},
+      person_identity = #{personIdentity,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
