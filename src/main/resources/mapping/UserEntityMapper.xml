@@ -22,28 +22,30 @@
 
   <select id="selectSelective" parameterType="com.entity.UserEntity" resultMap="BaseResultMap">
     select * from userinfo
-    where
-    <if test="id != null">
-      id = #{id},
-    </if>
-    <if test="wechat != null">
-      wechat = #{wechat},
-    </if>
-    <if test="stuStr != null">
-      stu_str = #{stuStr},
-    </if>
-    <if test="phone != null">
-      phone = #{phone},
-    </if>
-    <if test="labPos != null">
-      lab_pos = #{labPos},
-    </if>
-    <if test="personIdentity != null">
-      person_identity = #{personIdentity},
-    </if>
-    <if test="userName != null">
-      user_name = #{userName}
-    </if>
+    <where>
+      1=1
+      <if test="id != null">
+        and id = #{id}
+      </if>
+      <if test="wechat != null">
+       and wechat = #{wechat}
+      </if>
+      <if test="stuStr != null">
+       and stu_str = #{stuStr}
+      </if>
+      <if test="phone != null">
+       and  phone = #{phone}
+      </if>
+      <if test="labPos != null">
+       and  lab_pos = #{labPos}
+      </if>
+      <if test="personIdentity != null">
+       and person_identity = #{personIdentity}
+      </if>
+      <if test="userName != null">
+       and user_name = #{userName}
+      </if>
+    </where>
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from userinfo

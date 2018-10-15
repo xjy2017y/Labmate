@@ -16,41 +16,43 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from user
+    from userinfo
     where id = #{id,jdbcType=INTEGER}
   </select>
 
   <select id="selectSelective" parameterType="com.entity.UserEntity" resultMap="BaseResultMap">
-    select * from user
-    where
-    <if test="id != null">
-      id = #{id},
-    </if>
-    <if test="wechat != null">
-      wechat = #{wechat},
-    </if>
-    <if test="stuStr != null">
-      stu_str = #{stuStr},
-    </if>
-    <if test="phone != null">
-      phone = #{phone},
-    </if>
-    <if test="labPos != null">
-      lab_pos = #{labPos},
-    </if>
-    <if test="personIdentity != null">
-      person_identity = #{personIdentity},
-    </if>
-    <if test="userName != null">
-      user_name = #{userName}
-    </if>
+    select * from userinfo
+    <where>
+      1=1
+      <if test="id != null">
+        and id = #{id}
+      </if>
+      <if test="wechat != null">
+       and wechat = #{wechat}
+      </if>
+      <if test="stuStr != null">
+       and stu_str = #{stuStr}
+      </if>
+      <if test="phone != null">
+       and  phone = #{phone}
+      </if>
+      <if test="labPos != null">
+       and  lab_pos = #{labPos}
+      </if>
+      <if test="personIdentity != null">
+       and person_identity = #{personIdentity}
+      </if>
+      <if test="userName != null">
+       and user_name = #{userName}
+      </if>
+    </where>
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from user
+    delete from userinfo
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.entity.UserEntity">
-    insert into user (id, wechat, stu_str, 
+    insert into userinfo (id, wechat, stu_str,
       phone, lab_pos, person_identity, 
       user_name)
     values (#{id,jdbcType=INTEGER}, #{wechat,jdbcType=VARCHAR}, #{stuStr,jdbcType=VARCHAR}, 
@@ -58,7 +60,7 @@
       #{userName,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.entity.UserEntity">
-    insert into user
+    insert into userinfo
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
@@ -107,7 +109,7 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.entity.UserEntity">
-    update user
+    update userinfo
     <set>
       <if test="wechat != null">
         wechat = #{wechat,jdbcType=VARCHAR},
@@ -131,7 +133,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.entity.UserEntity">
-    update user
+    update userinfo
     set wechat = #{wechat,jdbcType=VARCHAR},
       stu_str = #{stuStr,jdbcType=VARCHAR},
       phone = #{phone,jdbcType=VARCHAR},
