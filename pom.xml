@@ -89,7 +89,7 @@
                     <warName>${project.build.finalName}</warName>
                 </configuration>
             </plugin>
-            <!-- 1.需要某个特殊的 jar包，但是有不能直接通过maven依赖获取，或者说在其他环境的maven仓库内不存在，那么如何将我们所需要的jar包打入我们的生产jar包中。
+            <!-- 1.需要某个特殊的 jar 包，但是有不能直接通过 maven 依赖获取，或者说在其他环境的maven仓库内不存在，那么如何将我们所需要的jar包打入我们的生产jar包中。
 　　          2.某个jar包内部包含的文件是我们所需要的，或者是我们希望将它提取出来放入指定的位置 ，那么除了复制粘贴，如何通过maven插件实现呢 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
